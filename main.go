@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -206,8 +205,6 @@ func run(c *cli.Context) error {
 			Picurl:              c.StringSlice("article_picurl"),
 		},
 	}
-
-	fmt.Println(plugin.Build)
 
 	return plugin.Exec()
 }

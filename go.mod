@@ -1,4 +1,4 @@
-module drone_wechat_message
+module github.com/ningge123/drone-wechat-message
 
 go 1.18
 
