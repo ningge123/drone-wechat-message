@@ -2,17 +2,17 @@ FROM golang:1.18.10-alpine AS builder
 ADD . /build
 WORKDIR /build
 
-RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -mod=vendor -ldflags "-s -w" -a -o release/linux/amd64/drone-dingtalk-message
+RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -mod=vendor -ldflags "-s -w" -a -o release/linux/amd64/drone-wechat-message
 
 
 FROM plugins/base:multiarch
 
-LABEL maintainer="Kayne Wang <w.zengkai@foxmail.com>"
+LABEL maintainer="2430114823@qq.com"
 
 LABEL org.label-schema.version=latest
-LABEL org.label-schema.vcs-url="https://github.com/KayneWang/drone-wechat-robot.git"
+LABEL org.label-schema.vcs-url="https://github.com/ningge123/drone-wechat-message"
 LABEL org.label-schema.name="Drone Wechat Robot"
 LABEL org.label-schema.schema-version="1.0"
 
-COPY --from=builder /build/release/linux/amd64/drone-wechat-robot /bin/
-ENTRYPOINT ["/bin/drone-wechat-robot"]
+COPY --from=builder /build/release/linux/amd64/drone-wechat-message /bin/
+ENTRYPOINT ["/bin/drone-wechat-message"]
