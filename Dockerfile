@@ -2,7 +2,9 @@ FROM golang:1.18.10-alpine AS builder
 ADD . /build
 WORKDIR /build
 
-RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -mod=vendor -ldflags "-s -w" -a -o release/linux/amd64/drone-wechat-message
+EXPORT GOPROXY=https://mirrors.aliyun.com/goproxy/
+
+RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o release/linux/amd64/drone-wechat-message
 
 
 FROM plugins/base:multiarch
