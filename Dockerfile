@@ -2,7 +2,7 @@ FROM golang:1.18.10-alpine AS builder
 ADD . /build
 WORKDIR /build
 
-EXPORT GOPROXY=https://mirrors.aliyun.com/goproxy/
+RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
 
 RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o release/linux/amd64/drone-wechat-message
 
