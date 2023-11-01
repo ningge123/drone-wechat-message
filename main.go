@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/urfave/cli"
 )
@@ -205,6 +207,18 @@ func run(c *cli.Context) error {
 			Picurl:              c.StringSlice("article_picurl"),
 		},
 	}
+
+	plugin.Config.MsgType = "markdown"
+	repo := strings.Split(plugin.Build.Link, "/")
+	color := "info"
+	switch plugin.Build.Status {
+	case "failure":
+		color = "warning"
+	}
+
+	plugin.Config.Content = fmt.Sprintf(`# *%s* \n
+			## Build State: <font color=\"%s\">*%s*</font> \n
+			### commit: <font color=\"comment\">*%s*</font> \n`, repo, color, plugin.Build.Status, plugin.Build.Commit)
 
 	return plugin.Exec()
 }
