@@ -216,9 +216,9 @@ func run(c *cli.Context) error {
 		color = "warning"
 	}
 
-	plugin.Config.Content = fmt.Sprintf(`# *%s* \n
-			## Build State: <font color=\"%s\">*%s*</font> \n
-			### commit: <font color=\"comment\">*%s*</font> \n`, repo, color, plugin.Build.Status, plugin.Build.Commit)
+	plugin.Config.Content = fmt.Sprintf("# *%s* \n"+
+		"## <font color=\"%s\">Build State: *%s*</font> \n"+
+		"### <font color=\"comment\">Commit: *%s*</font> \n", repo[len(repo)-2], color, plugin.Build.Status, plugin.Build.Message)
 
 	return plugin.Exec()
 }
