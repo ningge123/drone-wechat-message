@@ -219,7 +219,7 @@ func run(c *cli.Context) error {
 
 	plugin.Config.Content = fmt.Sprintf("# %s \n"+
 		"## <font color=\"%s\">Build State: %s</font> \n"+
-		"### <font color=\"comment\">Commit:"+"%s"+"</font> \n", repo[len(repo)-2], color, plugin.Build.Status, strconv.Quote(plugin.Build.Message))
+		"### <font color=\"comment\">Commit:"+"%s"+"</font>", repo[len(repo)-2], color, plugin.Build.Status, strconv.Quote(plugin.Build.Message))
 
 	return plugin.Exec()
 }
